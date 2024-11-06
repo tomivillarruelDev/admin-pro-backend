@@ -30,8 +30,8 @@ router.post(
     createDoctor
 );
 
-router.put('/:id', updateDoctor);
+router.put('/:id', validateJWT, updateDoctor);
 
-router.delete('/:id', deleteDoctor);
+router.delete('/:id', validateJWT, deleteDoctor);
 
 module.exports = router;
