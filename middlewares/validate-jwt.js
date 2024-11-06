@@ -16,7 +16,7 @@ const validateJWT = (req, res = response, next) => {
     try {
         const { uid } = jwt.verify(token, process.env.JWT_SECRET); //el uid esta grabado en el payload del token
 
-        req.uid = uid;
+        req.uid = uid; //asigna el uid a la peticion
     } catch (error) {
         return res.status(401).json({
             ok: false,
