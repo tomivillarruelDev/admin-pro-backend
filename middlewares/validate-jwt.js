@@ -2,7 +2,6 @@ const { response } = require('express');
 const jwt = require('jsonwebtoken');
 
 const validateJWT = (req, res = response, next) => {
-    // Leer el token
     const token = req.header('x-token');
 
     if (!token) {
@@ -12,9 +11,8 @@ const validateJWT = (req, res = response, next) => {
         });
     }
 
-    //Verificar el token
     try {
-        const { uid } = jwt.verify(token, process.env.JWT_SECRET); //el uid esta grabado en el payload del token
+        const { uid } = jwt.verify(token, process.env.JWT_SECRET);
 
         req.uid = uid;
     } catch (error) {

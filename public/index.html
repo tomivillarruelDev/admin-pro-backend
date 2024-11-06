@@ -14,7 +14,6 @@
         <script>
             var url = 'http://localhost:3005/api/login/google';
             function handleCredentialResponse(response) {
-                //console.log("Encoded JWT ID token: " + response.credential);
                 fetch(url, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

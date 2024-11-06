@@ -1,7 +1,6 @@
 const { Schema, model } = require('mongoose');
 
 const UserSchema = Schema({
-    //defincion del esquema de usuario
     name: {
         type: String,
         required: true,
@@ -29,16 +28,12 @@ const UserSchema = Schema({
     },
 });
 
-UserSchema.method(
-    'toJSON',
-    function () //metodo toJSON para modificar la respuesta que se envia al cliente
-    {
-        const { __v, _id, password, ...object } = this.toObject(); //extraemos los campos que no queremos que se muestren en la respuesta
+UserSchema.method('toJSON', function () {
+    const { __v, _id, password, ...object } = this.toObject();
 
-        object.uid = _id; //cambiamos el nombre del campo _id por uid
+    object.uid = _id;
 
-        return object;
-    }
-);
+    return object;
+});
 
-module.exports = model('User', UserSchema); //exportamos el modelo de usuario con el nombre "User" y el esquema UserSchema
+module.exports = model('User', UserSchema);

@@ -4,6 +4,7 @@ const User = require('../models/user');
 const Doctor = require('../models/doctor');
 const Hospital = require('../models/hospital');
 
+
 const deleteImage = (path) => {
     if (fs.existsSync(path)) {
         //Elimina la imagen anterior
@@ -32,10 +33,8 @@ const updateImage = async (type, id, fileName) => {
         case 'hospitals':
             const hospital = await Hospital.findById(id);
             if (!hospital) {
-                console.log("Hospital no encontrado");
                 return false;
             }
-            console.log("Sigue el hospital");
             oldPath = `./uploads/hospitals/${hospital.img}`;
             deleteImage(oldPath);
 

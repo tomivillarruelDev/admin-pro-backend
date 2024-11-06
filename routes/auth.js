@@ -24,7 +24,10 @@ router.post(
 router.post(
     '/google',
     [
-        check('token').not().isEmpty().withMessage('El token de Google es obligatorio'),
+        check('token')
+            .not()
+            .isEmpty()
+            .withMessage('El token de Google es obligatorio'),
         validateFields,
     ],
     googleSignIn

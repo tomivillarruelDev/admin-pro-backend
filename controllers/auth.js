@@ -9,7 +9,6 @@ const login = async (req, res = response) => {
     const { email, password } = req.body;
 
     try {
-        //Verificar email
         const dbUser = await User.findOne({ email });
 
         if (!dbUser) {
@@ -19,9 +18,7 @@ const login = async (req, res = response) => {
             });
         }
 
-        //Verificar password
         const validPassword = bcrypt.compareSync(password, dbUser.password);
-        //Nos pide la contraseña que ingreso el usuario y el hash que se encuentra en la base de datos. Hashea la contraseña y verifica si hacen match, los compara
 
         if (!validPassword) {
             return res.status(400).json({
@@ -40,7 +37,7 @@ const login = async (req, res = response) => {
         console.log(error);
         res.status(500).json({
             ok: false,
-            msg: 'Error inesperado...',
+            msg: 'Se ha producido un error inesperado',
         });
     }
 };
@@ -59,7 +56,7 @@ const googleSignIn = async (req, res = response) => {
                 password: '@@@',
                 img: picture,
                 google: true,
-            })
+            });
         } else {
             user = dbUser;
             user.google = true;
@@ -71,10 +68,11 @@ const googleSignIn = async (req, res = response) => {
 
         res.json({
             ok: true,
-            email, name, picture,
+            email,
+            name,
+            picture,
             token,
         });
-
     } catch (error) {
         console.log(error);
         res.status(400).json({

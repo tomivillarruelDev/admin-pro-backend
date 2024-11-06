@@ -34,8 +34,7 @@ const createUser = async (req, resp = response) => {
 
         const user = new User(req.body);
 
-        // Encriptar contraseña
-        const salt = bcrypt.genSaltSync(); //genera un salt para encriptar la contraseña
+        const salt = bcrypt.genSaltSync();
         user.password = bcrypt.hashSync(password, salt);
 
         await user.save();
@@ -51,7 +50,7 @@ const createUser = async (req, resp = response) => {
         console.log(error);
         resp.status(500).json({
             ok: false,
-            msg: 'Error inesperado... revisar logs',
+            msg: 'Se ha producido un error inesperado',
         });
     }
 };
@@ -84,17 +83,17 @@ const updateUser = async (req, res = response) => {
         fields.email = email;
         const updatedUser = await User.findByIdAndUpdate(uid, fields, {
             new: true,
-        }); // Buscalo y actualizalo
+        });
 
         res.json({
             ok: true,
             user: updatedUser,
         });
     } catch (error) {
-        console.error(error); // Esto te ayudará a ver el error en la consola
+        console.error(error);
         res.status(500).json({
             ok: false,
-            msg: 'Error inesperado...',
+            msg: 'Se ha producido un error inesperado',
         });
     }
 };
@@ -121,7 +120,7 @@ const deleteUser = async (req, res = response) => {
         console.log(error);
         res.status(500).json({
             ok: false,
-            msg: 'Error inesperado...',
+            msg: 'Se ha producido un error inesperado',
         });
     }
 };

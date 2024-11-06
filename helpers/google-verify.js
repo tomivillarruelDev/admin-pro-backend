@@ -8,9 +8,7 @@ async function googleVerify(token) {
     });
 
     const payload = ticket.getPayload();
-    const userid = payload['sub'];
-    // If the request specified a Google Workspace domain:
-    // const domain = payload['hd'];
+
     return payload;
 }
 googleVerify().catch(console.error);

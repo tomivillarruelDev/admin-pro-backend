@@ -1,4 +1,4 @@
-const path  = require('path');
+const path = require('path');
 const fs = require('fs');
 
 const { response } = require('express');
@@ -65,9 +65,6 @@ const fileUpload = (req, res = response) => {
             });
         }
 
-        console.log(updateImage);
-        console.log('LAM');
-
         res.json({
             ok: true,
             msg: 'Archivo subido',
@@ -77,7 +74,6 @@ const fileUpload = (req, res = response) => {
 };
 
 const returnFile = (req, res = response) => {
-    console.log('LAM');
     const { type, img } = req.params;
 
     const pathImg = path.join(__dirname, `../uploads/${type}/${img}`);

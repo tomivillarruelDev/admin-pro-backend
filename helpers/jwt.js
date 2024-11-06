@@ -20,7 +20,7 @@ const generateJWT = (uid) => {
                     resolve(token);
                 }
             }
-        ); // Aquí va la clave secreta
+        );
     });
 };
 

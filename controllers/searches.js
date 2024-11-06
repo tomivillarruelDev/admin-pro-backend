@@ -57,7 +57,7 @@ const getCollectionsResults = async (req, res = response) => {
 
     res.json({
         ok: true,
-        results: data
+        results: data,
     });
 };
 

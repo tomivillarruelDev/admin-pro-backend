@@ -1,7 +1,7 @@
 const { response } = require("express");
 const { validationResult } = require("express-validator");
 
-const validateFields = (req, res = response, next) => { // next es la siguiente funcion que se ejecutara cuando termine el middleware
+const validateFields = (req, res = response, next) => {
 
     const errors = validationResult( req );
     if ( !errors.isEmpty() ) {
@@ -11,7 +11,7 @@ const validateFields = (req, res = response, next) => { // next es la siguiente 
         });
     }
 
-    next(); //si no hay errores, se ejecuta la siguiente funcion
+    next();
 }
 
 module.exports = {

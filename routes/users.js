@@ -15,20 +15,18 @@ const { validateJWT } = require('../middlewares/validate-jwt');
 
 const router = Router();
 
-//controlador que se ejecutara cuando se acceda a la ruta
-
 router.get('/', validateJWT, getUsers);
 
 router.post(
     '/',
     [
-        check('name').not().isEmpty().withMessage('El nombre es obligatorio'), //validacion del nombre
+        check('name').not().isEmpty().withMessage('El nombre es obligatorio'),
         check('password')
             .not()
             .isEmpty()
-            .withMessage('La contraseña es obligatoria'), //validacion de la contraseña
-        check('email').isEmail().withMessage('El correo no es valido'), //validacion del correo
-        validateFields, //middleware personalizado para validar los campos
+            .withMessage('La contraseña es obligatoria'),
+        check('email').isEmail().withMessage('El correo no es valido'),
+        validateFields,
     ],
     createUser
 );
@@ -36,9 +34,9 @@ router.post(
 router.put(
     '/:id',
     [
-        validateJWT, //middleware para validar el token
-        check('name').not().isEmpty().withMessage('El nombre es obligatorio'), //validacion del nombre
-        check('email').isEmail().withMessage('El correo no es valido'), //validacion del correo
+        validateJWT,
+        check('name').not().isEmpty().withMessage('El nombre es obligatorio'),
+        check('email').isEmail().withMessage('El correo no es valido'),
         validateFields,
     ],
     updateUser
