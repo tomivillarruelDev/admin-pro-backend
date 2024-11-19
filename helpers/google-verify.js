@@ -11,7 +11,7 @@ async function googleVerify(token) {
 
     return payload;
 }
-googleVerify().catch(console.error);
+
 
 module.exports = {
     googleVerify,

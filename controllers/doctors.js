@@ -3,13 +3,43 @@ const { response } = require('express');
 const Doctor = require('../models/doctor');
 
 const getDoctors = async (req, res = response) => {
-    const doctors = await Doctor.find()
-        .populate('user', 'name img')
-        .populate('hospital', 'name img');
+    const from = Number(req.query.from) || 0;
+
+    const [doctors, total] = await Promise.all([
+        Doctor.find()
+            .populate('user', 'name img')
+            .populate('hospital', 'name img')
+            .skip(from)
+            .limit(5),
+        Doctor.countDocuments(),
+    ]);
+
     res.json({
         ok: true,
         doctors,
+        total,
     });
+};
+
+const getDoctorById = async (req, res = response) => {
+    const id = req.params.id;
+
+    try {
+        const doctor = await Doctor.findById(id)
+            .populate('user', 'name img')
+            .populate('hospital', 'name img');
+
+        res.json({
+            ok: true,
+            doctor,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Se ha producido un error inesperado',
+        });
+    }
 };
 
 const createDoctor = async (req, res = response) => {
@@ -24,7 +54,7 @@ const createDoctor = async (req, res = response) => {
         const dbDoctor = await doctor.save();
         res.json({
             ok: true,
-            msg: dbDoctor,
+            doctor: dbDoctor,
         });
     } catch (error) {
         console.log(error);
@@ -102,4 +132,5 @@ module.exports = {
     createDoctor,
     updateDoctor,
     deleteDoctor,
+    getDoctorById,
 };

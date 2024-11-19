@@ -13,18 +13,19 @@ const {
     createDoctor,
     updateDoctor,
     deleteDoctor,
+    getDoctorById,
 } = require('../controllers/doctors');
 
 const router = Router();
 
-router.get('/', getDoctors);
+router.get('/', validateJWT, getDoctors);
 
 router.post(
     '/',
     [
         validateJWT,
         check('name').not().isEmpty().withMessage('El nombre es obligatorio'),
-        check('name', 'El id del hospital debe ser valido').isMongoId(),
+        check('hospital', 'El id del hospital debe ser valido').isMongoId(),
         validateFields,
     ],
     createDoctor
@@ -33,5 +34,13 @@ router.post(
 router.put('/:id', validateJWT, updateDoctor);
 
 router.delete('/:id', validateJWT, deleteDoctor);
+
+router.get(
+    '/:id',
+    [
+        validateJWT, check('id', 'El id del médico debe ser valido').isMongoId()
+    ],
+    getDoctorById
+);
 
 module.exports = router;

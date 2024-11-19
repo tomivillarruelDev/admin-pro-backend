@@ -6,9 +6,10 @@ const Hospital = require('../models/hospital');
 
 
 const deleteImage = (path) => {
-    if (fs.existsSync(path)) {
-        //Elimina la imagen anterior
+    if (fs.existsSync(path) && fs.lstatSync(path).isFile()) {
         fs.unlinkSync(path);
+    } else {
+        console.error(`El archivo ${path} no existe o es un directorio`);
     }
 };
 
