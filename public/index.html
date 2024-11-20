@@ -1,47 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-critters-container>
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        <h1>Google</h1>
-        <div id="buttonDiv"></div>
+        <meta charset="utf-8">
+        <title>AdminPro</title>
+        <base href="/">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <script src="https://accounts.google.com/gsi/client" async></script>
 
-        <script>
-            var url = 'http://localhost:3005/api/login/google';
-            function handleCredentialResponse(response) {
-                fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ token: response.credential }),
-                })
-                    .then((resp) => resp.json())
-                    .then((data) => {
-                        console.log(data);
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    });
-            }
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
 
-            window.onload = function () {
-                google.accounts.id.initialize({
-                    client_id:
-                        '954516994459-hohu4b12fc65ve5gj47kmcq8cams27cg.apps.googleusercontent.com',
-                    callback: handleCredentialResponse,
-                });
+        <!-- FontAwesome CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-                google.accounts.id.renderButton(
-                    document.getElementById('buttonDiv'),
-                    { theme: 'outline', size: 'large' } // customization attributes
-                );
+        <!-- Bootstrap Core CSS -->
+        <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="css/style.css" rel="stylesheet">
+        <!-- You can change the theme colors from here -->
+        <link id="theme" rel="stylesheet">
+    <link rel="stylesheet" href="styles-NL7IIYMI.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-NL7IIYMI.css"></noscript></head>
+    <body class="fix-header card-no-border fix-sidebar">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">Admin Pro</p>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Main wrapper - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <app-root></app-root>
 
-                google.accounts.id.prompt(); // also display the One Tap dialog
-            };
-        </script>
-    </body>
+        <!-- ============================================================== -->
+        <!-- All Jquery -->
+        <!-- ============================================================== -->
+        <script src="plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="plugins/bootstrap/js/popper.min.js"></script>
+        <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+        <!-- slimscrollbar scrollbar JavaScript -->
+        <script src="js/perfect-scrollbar.jquery.min.js"></script>
+        <!--Wave Effects -->
+        <script src="js/waves.js"></script>
+        <!--Menu sidebar -->
+        <script src="js/sidebarmenu.js"></script>
+        <!--stickey kit -->
+        <script src="plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+        <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
+        <!--Custom JavaScript -->
+        <script src="js/custom.js"></script>
+        <!-- ============================================================== -->
+        <!-- Chart -->
+        <!-- ============================================================== -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <link rel="modulepreload" href="chunk-QV7XXSNR.js"><script src="polyfills-FFHMD2TL.js" type="module"></script><script src="main-D73T3RGL.js" type="module"></script></body>
 </html>

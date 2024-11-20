@@ -9,8 +9,6 @@ const getMenuFrontend = (role = 'USER_ROLE') => {
                 { title: 'Main', path: '/' },
                 { title: 'ProgressBar', path: 'progress' },
                 { title: 'Gráficos', path: 'graph1' },
-                { title: 'Promesas', path: 'promises' },
-                { title: 'RXJS', path: 'rxjs' },
             ],
         },
     
