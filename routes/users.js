@@ -11,11 +11,11 @@ const {
     updateUser,
     deleteUser,
 } = require('../controllers/users');
-const { validateJWT, validateADMIN_ROLE } = require('../middlewares/validate-jwt');
+const { validateJWT, validateADMIN_ROLE, validateSameUser } = require('../middlewares/validate-jwt');
 
 const router = Router();
 
-router.get('/', validateJWT, getUsers);
+router.get('/', [validateJWT, validateADMIN_ROLE], getUsers);
 
 router.post(
     '/',
@@ -35,7 +35,7 @@ router.put(
     '/:id',
     [
         validateJWT,
-        validateADMIN_ROLE,
+        validateSameUser,
         check('name').not().isEmpty().withMessage('El nombre es obligatorio'),
         check('email').isEmail().withMessage('El correo no es valido'),
         validateFields,
